@@ -1,0 +1,85 @@
+use topcoat::asset::Asset;
+
+use crate::assets::*;
+
+pub struct Experience {
+  pub position: &'static str,
+  pub company: &'static str,
+  pub logo: Option<Asset>,
+  pub website: &'static str,
+  pub description: &'static str,
+  pub techs: Vec<&'static str>,
+}
+
+pub fn get_experience() -> Vec<Experience> {
+  vec![
+    Experience {
+      position: "Senior Backend Developer",
+      company: "Marble",
+      logo: Some(MARBLE),
+      website: "https://www.checkmarble.com",
+      description: "Backend developer for an Open Source AML and transaction monitoring solution.",
+      techs: vec!["Rust", "Go", "Google Cloud Platform", "Terraform"],
+    },
+    Experience {
+      position: "Lead Platform Architect",
+      company: "Ready Education",
+      logo: Some(READY_EDUCATION),
+      website: "https://www.readyeducation.com",
+      description: "Lead technology architect for a company comprised of five products. The role was to design and implement new (and improve existing) engineering endeavors across the company.",
+      techs: vec!["Linux", "AWS", "Kubernetes"],
+    },
+    Experience {
+      position: "Co-founder and CTO",
+      company: "AppScho",
+      logo: Some(APPSCHO),
+      website: "https://www.appscho.com",
+      description: "Co-founded and led a company providing higher education institutions with a mobile app for their students to access any and all information that help them with their studies. The company was acquired by Ready Education in 2021.",
+      techs: vec!["Linux", "Kubernetes", "Go", "Rust", "Elixir", "Ruby on Rails", "GCP", "Vue.js"],
+    },
+    Experience {
+      position: "Web developer",
+      company: "Hello Tomorrow",
+      logo: Some(HELLO_TOMORROW),
+      website: "https://hello-tomorrow.org",
+      description: "Created, hosted and maintained Hello Tomorrow's former institutional website.",
+      techs: vec!["Ruby on Rails", "Capistrano", "Ansible"],
+    },
+    Experience {
+      position: "DevOps engineer",
+      company: "INA",
+      logo: Some(INA),
+      website: "https://www.ina.fr",
+      description: "Designed and set up configuration management, continuous integration and deployment within INA's information systems. Trained their their to understand and adopt DevOps culture.",
+      techs: vec!["Linux", "Chef", "Ruby"],
+    },
+    Experience {
+      position: "Systems architect, DevOps engineer & Technical trainer",
+      company: "Smile",
+      logo: Some(SMILE),
+      website: "https://www.smile.fr",
+      description: "Joined a team performing short missions at final clients worldwide, designing, deploying and troubleshooting a wide range of IT systems, mostly based on Open Source technologies. Led a few dozen training sessions about IT technologies and culture.",
+      techs: vec![
+        "Linux",
+        "Puppet",
+        "FreeRADIUS",
+        "Ansible",
+        "GitLab",
+        "MySQL",
+        "PostgreSQL",
+        "Elasticsearch",
+        "CAS",
+        "TR.069",
+        "Networking",
+      ],
+    },
+    Experience {
+      position: "Systems administrator",
+      company: "SFR Business Team",
+      logo: Some(SFR_BUSINESS),
+      website: "https://www.sfrbusiness.fr/",
+      description: "Set up systems towards automation and industrialization of processes (log and metrics collection, deployment automation, ...).",
+      techs: vec!["VMware", "Linux", "PHP"],
+    },
+  ]
+}

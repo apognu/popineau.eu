@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+@import "./variables.css";
+
+body {
+  background: #1a1a1a;
+  font-family: "Space Mono", sans-serif;
+  font-size: 15px;
+  color: var(--normal);
+  padding: 8px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-weight: normal;
+  color: var(--normal);
+}
+
+h1 {
+  font-size: 1.45rem;
+  color: white;
+
+  span {
+    color: var(--accent);
+  }
+}
+
+h2 {
+  font-size: 1.25rem;
+  color: var(--dark-gray);
+}
+
+h3 {
+  font-size: 1.3em;
+}
+
+svg {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+
+  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    padding: 8px 0;
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &.btn {
+    background: #2f3542;
+    padding: 8px 12px;
+    color: white;
+    border-radius: 3px;
+    text-transform: lowercase;
+
+    &:hover {
+      background: #57606f;
+      text-decoration: none;
+    }
+  }
+}
+
+span.pill {
+  display: inline-block;
+  margin-right: 8px;
+  margin-bottom: 3px;
+  padding: 3px 6px;
+  background: #2f3542;
+  border-radius: 2px;
+  color: var(--dark-gray);
+  font-size: 0.8rem;
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  body {
+    padding: 8px;
+  }
+}

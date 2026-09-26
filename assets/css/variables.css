@@ -1,0 +1,8 @@
+:root {
+  --normal: rgba(255, 255, 255, 0.87);
+  --accent: #6eacda;
+  --light-gray: #cacaca;
+  --dark-gray: rgba(235, 235, 235, 0.6);
+
+  --surface: rgb(36, 36, 36);
+}

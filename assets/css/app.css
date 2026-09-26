@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+@theme {
+  --color-canvas: #1a1a1a;
+  --color-fg: rgba(255, 255, 255, 0.87);
+  --color-accent: #6eacda;
+  --color-muted: rgba(235, 235, 235, 0.6);
+  --color-light: #cacaca;
+  --color-surface: rgb(36, 36, 36);
+  --color-chip: #2f3542;
+  --color-chip-hover: #57606f;
+
+  --font-mono: "Space Mono", sans-serif;
+
+  --text-*: initial;
+  --text-xs: 0.8rem;
+  --text-xs--line-height: 1.5;
+  --text-sm: 0.9rem;
+  --text-sm--line-height: 1.5;
+  --text-base: 0.9375rem;
+  --text-base--line-height: 1.5;
+  --text-lg: 1.1rem;
+  --text-lg--line-height: 1.5;
+  --text-xl: 1.25rem;
+  --text-xl--line-height: 1.5;
+  --text-2xl: 1.5rem;
+  --text-2xl--line-height: 1.5;
+
+  --radius-*: initial;
+  --radius-sm: 0.1875rem;
+  --radius-md: 0.375rem;
+
+  --spacing-avatar: 250px;
+}
+
+@layer base {
+  body {
+    @apply bg-canvas p-2 font-mono text-base text-fg;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply m-0 font-normal text-fg;
+  }
+
+  h1 {
+    @apply text-2xl text-white;
+  }
+
+  h1 span {
+    @apply text-accent;
+  }
+
+  h2 {
+    @apply text-xl text-muted;
+  }
+
+  h3 {
+    @apply text-xl;
+  }
+
+  svg {
+    @apply inline-block align-middle;
+  }
+
+  a {
+    @apply text-accent no-underline hover:underline max-[480px]:py-2;
+  }
+}
+
+@utility card {
+  @apply rounded-md bg-surface p-4;
+}
+
+@utility btn {
+  @apply rounded-sm bg-chip px-3 py-2 text-white lowercase hover:bg-chip-hover hover:no-underline;
+}
+
+@utility pill {
+  @apply mr-2 mb-[3px] inline-block rounded-sm bg-chip px-1.5 py-[3px] text-sm;
+}

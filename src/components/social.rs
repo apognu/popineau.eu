@@ -1,31 +1,26 @@
-use topcoat::{
-  Result,
-  view::{View, component, view},
-};
+use leptos::prelude::*;
 
 use crate::{
-  assets::fa7_brands as brands,
-  components::{external_link, with_icon},
+  components::{ExternalLink, WithIcon},
   data::identity::Social,
+  icons,
 };
 
 #[component]
-pub async fn social_network(network: Social) -> Result<impl View> {
-  let data = match network.network {
-    "GitHub" => Some(brands::GITHUB),
-    "LinkedIn" => Some(brands::LINKEDIN),
+pub fn SocialNetwork(network: Social) -> impl IntoView {
+  let icon = match network.network {
+    "GitHub" => Some(icons::GITHUB),
+    "LinkedIn" => Some(icons::LINKEDIN),
     _ => None,
   };
 
-  Ok(view! {
+  view! {
     <p class="mb-2">
-      with_icon(
-        data: data,
-        external_link(
-          url: network.url,
-          (network.handle) " on " (network.network)
-        )
-      )
+      <WithIcon icon=icon>
+        <ExternalLink href=network.url>
+          {network.handle} " on " {network.network}
+        </ExternalLink>
+      </WithIcon>
     </p>
-  })
+  }
 }

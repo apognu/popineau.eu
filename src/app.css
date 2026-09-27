@@ -1,5 +1,21 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Space Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/space-mono-latin-400-normal.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Space Mono";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/space-mono-latin-700-normal.woff2") format("woff2");
+}
+
 @theme {
   --color-canvas: #1a1a1a;
   --color-fg: rgba(255, 255, 255, 0.87);
@@ -9,6 +25,7 @@
   --color-surface: rgb(36, 36, 36);
   --color-chip: #2f3542;
   --color-chip-hover: #57606f;
+  --color-star: #fdf3c4;
 
   --font-mono: "Space Mono", sans-serif;
 
@@ -67,6 +84,14 @@
 
   a {
     @apply text-accent no-underline hover:underline max-[480px]:py-2;
+  }
+}
+
+@layer components {
+  .icon > svg {
+    width: var(--icon-size);
+    height: var(--icon-size);
+    vertical-align: calc(0.35em - var(--icon-size) / 2);
   }
 }
 

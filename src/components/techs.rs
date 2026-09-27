@@ -1,15 +1,10 @@
-use topcoat::{
-  Result,
-  view::{View, component, view},
-};
+use leptos::prelude::*;
 
 #[component]
-pub async fn tech_list(techs: Vec<&'static str>) -> Result<impl View> {
-  Ok(view! {
+pub fn Techs(techs: Vec<&'static str>) -> impl IntoView {
+  view! {
     <div>
-      for tech in techs {
-        <span class="pill">(tech)</span>
-      }
+      {techs.into_iter().map(|tech| view! { <span class="pill">{tech}</span> }).collect_view()}
     </div>
-  })
+  }
 }

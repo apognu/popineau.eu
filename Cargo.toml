@@ -3,11 +3,50 @@ name = "popineau_eu"
 version = "0.1.0"
 edition = "2024"
 
-[dependencies]
-jiff = "0.2.37"
-rand = "0.10.3"
-tokio = { version = "1.53.1", features = ["macros", "rt-multi-thread"] }
-topcoat = { version = "0.9.0", features = ["asset", "font-fontsource", "icon-iconify", "tailwind"] }
+[lib]
+crate-type = ["cdylib", "rlib"]
 
-[build-dependencies]
-topcoat = { version = "0.9.0", default-features = false, features = ["icon-iconify", "tailwind"] }
+[dependencies]
+axum = { version = "0.8", optional = true }
+cached = { version = "4.0", features = ["async"], optional = true }
+console_error_panic_hook = "0.1"
+iconify = "0.3"
+jiff = "0.2.37"
+leptos = "0.8"
+leptos_axum = { version = "0.8", optional = true }
+leptos_meta = "0.8"
+leptos_router = "0.8"
+serde = { version = "1", features = ["derive"], optional = true }
+tokio = { version = "1.53.1", features = ["macros", "rt-multi-thread"], optional = true }
+tracing = { version = "0.1", optional = true }
+tracing-subscriber = { version = "0.3", features = ["env-filter"], optional = true }
+ureq = { version = "3.4", features = ["json"], optional = true }
+wasm-bindgen = "0.2"
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+jiff = { version = "0.2.37", features = ["js"] }
+
+[features]
+hydrate = ["leptos/hydrate"]
+ssr = ["dep:axum", "dep:cached", "dep:tokio", "dep:tracing", "dep:tracing-subscriber", "dep:leptos_axum", "dep:serde", "dep:ureq", "leptos/ssr", "leptos_meta/ssr", "leptos_router/ssr"]
+
+[profile.wasm-release]
+inherits = "release"
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "abort"
+
+[package.metadata.leptos]
+output-name = "popineau_eu"
+site-root = "target/site"
+site-pkg-dir = "pkg"
+tailwind-input-file = "src/app.css"
+assets-dir = "public"
+site-addr = "127.0.0.1:3000"
+reload-port = 3001
+bin-features = ["ssr"]
+bin-default-features = false
+lib-features = ["hydrate"]
+lib-default-features = false
+lib-profile-release = "wasm-release"

@@ -34,18 +34,18 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cargo install --locked topcoat-cli
+          rustup target add wasm32-unknown-unknown
+          cargo install --locked cargo-leptos
 
       - name: Build
         run: |
-          cargo build --locked --release
-          /github/home/.cargo/bin/topcoat asset bundle --release
+          /github/home/.cargo/bin/cargo-leptos build --release
 
       - name: Stage binary
         run: |
           mkdir -p dist
           cp target/release/popineau_eu dist/popineau_eu
-          cp -r target/release/assets dist/assets
+          cp -r target/site dist/site
 
       - name: Upload binary artifact
         uses: actions/upload-artifact@v7

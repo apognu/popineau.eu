@@ -1,27 +1,19 @@
-use topcoat::{
-  Result,
-  view::{Child, View, component, view},
-};
+use leptos::prelude::*;
 
 #[component]
-pub async fn card(
-  #[default]
-  #[into]
-  class: String,
-  child: Child<'_>,
-) -> Result<impl View> {
-  Ok(view! {
-    <div class=(format!("card {class}"))>
-      (child)
+pub fn Card(#[prop(optional, into)] class: String, children: Children) -> impl IntoView {
+  view! {
+    <div class=format!("card {class}")>
+      {children()}
     </div>
-  })
+  }
 }
 
 #[component]
-pub async fn card_grid(child: Child<'_>) -> Result<impl View> {
-  Ok(view! {
+pub fn CardGrid(children: Children) -> impl IntoView {
+  view! {
     <div class="grid gap-6 md:grid-cols-2 md:gap-x-8">
-      (child)
+      {children()}
     </div>
-  })
+  }
 }

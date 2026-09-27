@@ -1,6 +1,8 @@
 use jiff::{SpanRound, Unit, Zoned, civil::Date};
 
 pub struct Identity {
+  pub website: &'static str,
+  pub picture: &'static str,
   pub resume_url: &'static str,
   pub firstname: &'static str,
   pub lastname: &'static str,
@@ -47,6 +49,8 @@ pub fn identity() -> Identity {
     .get_years();
 
   Identity {
+    website: "https://popineau.eu",
+    picture: "/picture.jpg",
     resume_url: "https://github.com/apognu/resume/releases/download/latest/Antoine.POPINEAU.-.Resume.pdf",
     firstname: "Antoine",
     lastname: "POPINEAU",

@@ -1,47 +1,14 @@
-use topcoat::{
-  Result,
-  icon::IconData,
-  view::{Attributes, Child, Length, View, component, view},
-};
+use leptos::prelude::*;
 
 #[component]
-pub async fn icon(
-  data: IconData,
-  #[into]
-  #[default(Length::em(1.5))]
-  size: Length,
-  #[default]
-  #[into]
-  label: String,
-  #[default]
-  #[into]
-  class: String,
-  #[default] attrs: Attributes,
-) -> Result<impl View> {
-  Ok(view! {
-    <span class=(class)>
-      <svg
-          viewBox=(data.view_box())
-          width=(size)
-          height=(size)
-          aria-hidden=(label.is_empty().then_some("true"))
-          role=((!label.is_empty()).then_some("img"))
-          aria-label=((!label.is_empty()).then_some(label))
-          (attrs)
-      >
-          (data.into_body())
-      </svg>
-    </span>
-  })
+pub fn Icon(icon: &'static str, #[prop(default = "1.5em")] size: &'static str, #[prop(optional, into)] class: String) -> impl IntoView {
+  view! { <span class=format!("icon {class}") style=format!("--icon-size: {size}") aria-hidden="true" inner_html=icon></span> }
 }
 
 #[component]
-pub async fn with_icon(#[into] data: Option<IconData>, child: Child<'_>) -> Result<impl View> {
-  Ok(view! {
-    if let Some(data) = data {
-      icon(data: data, class: "pr-3")
-    }
-
-    (child)
-  })
+pub fn WithIcon(#[prop(into)] icon: Option<&'static str>, #[prop(default = "1.5em")] size: &'static str, children: Children) -> impl IntoView {
+  view! {
+    {icon.map(|icon| view! { <Icon icon size class="pr-2" /> })}
+    {children()}
+  }
 }

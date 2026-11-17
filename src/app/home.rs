@@ -9,6 +9,8 @@ use crate::{
 #[component]
 pub fn Home() -> impl IntoView {
   let identity = identity();
+  let age_key = identity.gpg.age;
+  let copied = RwSignal::new(false);
 
   view! {
     <div>
@@ -49,18 +51,40 @@ pub fn Home() -> impl IntoView {
         </p>
 
         <div class="mb-8">
-          <p class="mt-2 mb-4 hidden md:block">
+          <p class="mt-2 mb-0 hidden md:block">
             "GPG fingerprint:"
-            <span class="ml-2 text-white">{identity.gpg.fingerprint}</span>
+            <span class="ml-2 text-white">
+              {identity.gpg.fingerprint.split(' ').map(|group| view! { <span class="not-first:ml-[1ch]">{group}</span> }).collect_view()}
+            </span>
             <a class="ml-3" href=identity.gpg.url>
               <Icon icon=icons::DOWNLOAD_FOR_OFFLINE size="1.7em" />
             </a>
           </p>
 
+          <p class="mt-2 mb-2 md:hidden">
+            "GPG public key: "
+            <ExternalLink href=identity.gpg.url>download</ExternalLink>
+          </p>
+
+          <p class="mt-2 mb-4 hidden md:block">
+            "Age public key:"
+            <span class="ml-2 text-white">{identity.gpg.age}</span>
+          </p>
+
           <p class="mt-2 mb-4 md:hidden">
-            "GPG public key:"
-            <a class="btn ml-2" href=identity.gpg.url>
-              <WithIcon icon=icons::DOWNLOAD_FOR_OFFLINE size="1.7em">"Download"</WithIcon>
+            "Age public key: "
+            <a
+              href="#"
+              on:click=move |event| {
+                event.prevent_default();
+                copy_to_clipboard(age_key, copied);
+              }
+            >
+              {move || {
+                let (icon, label) = if copied.get() { (icons::CHECK, "copied") } else { (icons::CONTENT_COPY, "copy") };
+
+                view! { <WithIcon icon size="1.1em">{label}</WithIcon> }
+              }}
             </a>
           </p>
         </div>
@@ -69,4 +93,14 @@ pub fn Home() -> impl IntoView {
       </Card>
     </div>
   }
+}
+
+fn copy_to_clipboard(text: &str, copied: RwSignal<bool>) {
+  let promise = window().navigator().clipboard().write_text(text);
+
+  leptos::task::spawn_local(async move {
+    if wasm_bindgen_futures::JsFuture::from(promise).await.is_ok() {
+      copied.set(true);
+    }
+  });
 }

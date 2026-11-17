@@ -17,18 +17,37 @@ leptos_axum = { version = "0.8", optional = true }
 leptos_meta = "0.8"
 leptos_router = "0.8"
 serde = { version = "1", features = ["derive"], optional = true }
-tokio = { version = "1.53.1", features = ["macros", "rt-multi-thread"], optional = true }
+tokio = { version = "1.53.1", features = [
+  "macros",
+  "rt-multi-thread",
+], optional = true }
 tracing = { version = "0.1", optional = true }
-tracing-subscriber = { version = "0.3", features = ["env-filter"], optional = true }
+tracing-subscriber = { version = "0.3", features = [
+  "env-filter",
+], optional = true }
 ureq = { version = "3.4", features = ["json"], optional = true }
 wasm-bindgen = "0.2"
+wasm-bindgen-futures = "0.4"
+web-sys = { version = "0.3", features = ["Clipboard", "Navigator"] }
 
 [target.'cfg(target_arch = "wasm32")'.dependencies]
 jiff = { version = "0.2.37", features = ["js"] }
 
 [features]
 hydrate = ["leptos/hydrate"]
-ssr = ["dep:axum", "dep:cached", "dep:tokio", "dep:tracing", "dep:tracing-subscriber", "dep:leptos_axum", "dep:serde", "dep:ureq", "leptos/ssr", "leptos_meta/ssr", "leptos_router/ssr"]
+ssr = [
+  "dep:axum",
+  "dep:cached",
+  "dep:tokio",
+  "dep:tracing",
+  "dep:tracing-subscriber",
+  "dep:leptos_axum",
+  "dep:serde",
+  "dep:ureq",
+  "leptos/ssr",
+  "leptos_meta/ssr",
+  "leptos_router/ssr",
+]
 
 [profile.wasm-release]
 inherits = "release"

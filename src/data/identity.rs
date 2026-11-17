@@ -24,6 +24,7 @@ impl Identity {
 pub struct Gpg {
   pub fingerprint: &'static str,
   pub url: &'static str,
+  pub age: &'static str,
 }
 
 pub struct Employer {
@@ -60,6 +61,7 @@ pub fn identity() -> Identity {
     gpg: Gpg {
       fingerprint: "1F90 EA90 4869 0EA5 E053 D80F 121C 64AF D045 C39C",
       url: "https://keys.openpgp.org/vks/v1/by-fingerprint/1F90EA9048690EA5E053D80F121C64AFD045C39C",
+      age: "age1yubikey1qgufceja9cx26lv4fs98jdmqnart560ytt2vxlxh3kvze5rrtl79w82hk72",
     },
     employer: Employer {
       name: "Marble",

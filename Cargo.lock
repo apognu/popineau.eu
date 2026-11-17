@@ -1784,6 +1784,8 @@ dependencies = [
  "tracing-subscriber",
  "ureq 3.4.2",
  "wasm-bindgen",
+ "wasm-bindgen-futures",
+ "web-sys",
 ]
 
 [[package]]

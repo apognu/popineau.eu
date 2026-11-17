@@ -59,7 +59,7 @@ pub fn identity() -> Identity {
     title: "Infrastructure architect, DevOps & systems developer",
     gpg: Gpg {
       fingerprint: "1F90 EA90 4869 0EA5 E053 D80F 121C 64AF D045 C39C",
-      url: "https://keys.openpgp.org/vks/v1/by-fingerprint/9A9BBBB458D526BECF16DD2E8A3DFF41E10C6E27",
+      url: "https://keys.openpgp.org/vks/v1/by-fingerprint/1F90EA9048690EA5E053D80F121C64AFD045C39C",
     },
     employer: Employer {
       name: "Marble",
